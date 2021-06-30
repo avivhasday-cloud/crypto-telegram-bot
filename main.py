@@ -65,7 +65,9 @@ start the bot and waiting for messages
 """
 def main():
     # init
-    updater = Updater(token=Config.TELEGRAM_API_KEY, use_context=True)
+    api_key = Config.TELEGRAM_API_KEY
+    secured_url = Config.APP_URL + Config.TELEGRAM_API_KEY
+    updater = Updater(token=api_key, use_context=True)
     dispacher = updater.dispatcher
 
     # add handlers
@@ -73,7 +75,11 @@ def main():
     dispacher.add_handler(MessageHandler(Filters.text, handle_message))
     dispacher.add_error_handler(error)
 
-    updater.start_polling()
+    # Start the Bot
+    updater.start_webhook(listen="0.0.0.0",
+                          port=8443,
+                          url_path=api_key)
+    updater.bot.set_webhook(secured_url)
     updater.idle()
 
 

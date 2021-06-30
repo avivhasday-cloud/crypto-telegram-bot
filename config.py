@@ -19,3 +19,4 @@ class Config(object):
 
     COINMARKETCAP_API_KEY = os.getenv("COINMARKETCAP_API_KEY")
     TELEGRAM_API_KEY = os.getenv("TELEGRAM_API_KEY")
+    APP_URL = os.getenv('APP_URL')
