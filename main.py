@@ -77,9 +77,9 @@ def main():
 
     # Start the Bot
     updater.start_webhook(listen="0.0.0.0",
-                          port=8443,
-                          url_path=api_key)
-    updater.bot.set_webhook(secured_url)
+                          port=int(Config.PORT),
+                          url_path=api_key,
+                          webhook_url=secured_url)
     updater.idle()
 
 
